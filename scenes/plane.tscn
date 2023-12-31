@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvackwk2wv6ep"]
+
+[ext_resource type="Script" path="res://Plane.gd" id="1_xmq7r"]
+[ext_resource type="PackedScene" uid="uid://d38j4wxgir874" path="res://asset/toyplane.glb" id="2_oqs45"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qnmel"]
+radius = 0.7
+height = 5.0
+
+[node name="Plane" type="CharacterBody3D"]
+script = ExtResource("1_xmq7r")
+
+[node name="Planemodel" parent="." instance=ExtResource("2_oqs45")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10, 3, 0)
+fov = 76.7
+
+[node name="Controls" type="Node" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.0358993, 0)
+shape = SubResource("CapsuleShape3D_qnmel")

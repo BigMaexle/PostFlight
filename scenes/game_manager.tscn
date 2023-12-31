@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2tm3wg03esc6"]
+
+[ext_resource type="Script" path="res://scenes/game_manager.gd" id="1_2sybr"]
+[ext_resource type="PackedScene" uid="uid://bhf66cjq4o4oq" path="res://scenes/world.tscn" id="2_aulex"]
+[ext_resource type="PackedScene" uid="uid://cvackwk2wv6ep" path="res://scenes/plane.tscn" id="3_3xxu4"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_2sybr")
+
+[node name="World" parent="." instance=ExtResource("2_aulex")]
+
+[node name="Plane" parent="." instance=ExtResource("3_3xxu4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)

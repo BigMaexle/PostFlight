@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://bhf66cjq4o4oq"]
+
+[ext_resource type="Texture2D" uid="uid://cs4qkm2oq58wk" path="res://asset/grass_normal.jpg" id="1_glyeu"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rccrs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xih8b"]
+albedo_color = Color(0.117647, 0.443137, 0, 1)
+normal_enabled = true
+normal_texture = ExtResource("1_glyeu")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_56fxj"]
+material = SubResource("StandardMaterial3D_xih8b")
+size = Vector2(500, 500)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nf0yk"]
+sky_top_color = Color(0.321569, 0.447059, 0.670588, 1)
+sky_horizon_color = Color(0, 0.454902, 0.721569, 1)
+sky_curve = 0.0861523
+ground_horizon_color = Color(0.647059, 0.654902, 0.670588, 1)
+
+[sub_resource type="Sky" id="Sky_ka8a7"]
+sky_material = SubResource("ProceduralSkyMaterial_nf0yk")
+
+[sub_resource type="Environment" id="Environment_a3bwm"]
+background_mode = 2
+sky = SubResource("Sky_ka8a7")
+
+[node name="World" type="Node3D"]
+
+[node name="Terrain" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Terrain"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Floor"]
+shape = SubResource("WorldBoundaryShape3D_rccrs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain/Floor"]
+mesh = SubResource("PlaneMesh_56fxj")
+
+[node name="Sky" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a3bwm")
+
+[node name="SunLight" type="DirectionalLight3D" parent="Sky"]
+transform = Transform3D(1, 0, 0, 0, 0.538947, 0.84234, 0, -0.84234, 0.538947, -0.193684, 7.20564, 0.0947123)
